@@ -1,15 +1,15 @@
-DROP TABLE IF EXISTS Prove;
-DROP TABLE IF EXISTS Recompensa;
-DROP TABLE IF EXISTS Missao;
-DROP TABLE IF EXISTS NPC;
-DROP TABLE IF EXISTS UsaSet;
-DROP TABLE IF EXISTS Armadura;
-DROP TABLE IF EXISTS Arma;
-DROP TABLE IF EXISTS Elemento;
-DROP TABLE IF EXISTS Pet;
-DROP TABLE IF EXISTS Ataque;
-DROP TABLE IF EXISTS Jogador;
-DROP TABLE IF EXISTS Personagem;
+DROP TABLE Prove;
+DROP TABLE Recompensa;
+DROP TABLE Missao;
+DROP TABLE NPC;
+DROP TABLE UsaSet;
+DROP TABLE Armadura;
+DROP TABLE Arma;
+DROP TABLE Elemento;
+DROP TABLE Pet;
+DROP TABLE Ataque;
+DROP TABLE Jogador;
+DROP TABLE Personagem;
 
 CREATE TABLE Personagem (
     id_personagem  number,
@@ -34,8 +34,8 @@ CREATE TABLE Ataque (
     id_atacado  number NOT NULL,
 
     CONSTRAINT ataque_pk      PRIMARY KEY (turno, id_atacante),
-    CONSTRAINT id_atacante_fk FOREIGN KEY (id_atacante)        REFERENCES Jogador(id_jogador),
-    CONSTRAINT id_atacado_fk  FOREIGN KEY (id_atacado)         REFERENCES Jogador(id_jogador)
+    CONSTRAINT id_atacante_fk FOREIGN KEY (id_atacante) REFERENCES Jogador(id_jogador),
+    CONSTRAINT id_atacado_fk  FOREIGN KEY (id_atacado)  REFERENCES Jogador(id_jogador)
 );
 
 CREATE TABLE Pet (
@@ -44,7 +44,7 @@ CREATE TABLE Pet (
     ataque  number       NOT NULL,
 
     CONSTRAINT pet_pk PRIMARY KEY (id_dono, nome),
-    CONSTRAINT pet_fk FOREIGN KEY (id_dono)       REFERENCES Jogador(id_jogador)
+    CONSTRAINT pet_fk FOREIGN KEY (id_dono) REFERENCES Jogador(id_jogador)
 );
 
 CREATE TABLE Elemento (
@@ -53,7 +53,7 @@ CREATE TABLE Elemento (
     nome_elemento varchar2(30),
 
     CONSTRAINT elemento_pk PRIMARY KEY (id_dono, nome_pet, nome_elemento),
-    CONSTRAINT elemento_fk FOREIGN KEY (id_dono, nome_pet)                REFERENCES Pet(id_dono, nome)
+    CONSTRAINT elemento_fk FOREIGN KEY (id_dono, nome_pet) REFERENCES Pet(id_dono, nome)
 );
 
 CREATE TABLE Arma (
